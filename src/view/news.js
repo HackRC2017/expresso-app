@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet, Text, View, Slider } from 'react-native';
+import { Image, StyleSheet, Text, View, Slider, TouchableOpacity } from 'react-native';
 import Interactable from 'react-native-interactable';
+import { Actions } from "react-native-router-flux";
 
 
 // Styles
@@ -63,8 +64,8 @@ const styles = StyleSheet.create({
 
 // View
 class NewsView extends Component {
-    onDrawerSnap() {
-        console.log('yoyoyo');
+    onPress() {
+        Actions.newsDescription({news: this.props.news})
     }
     render() {
         return (
@@ -75,16 +76,18 @@ class NewsView extends Component {
                     horizontalOnly={true}
                     onSnap={this.onDrawerSnap}
                     snapPoints={[{x: 585}, {x: 0}, {x: -585}]} >
-                    <View style={styles.newsContainer}>
-                        <Image style={styles.image} borderRadius={10} source={require('../resources/news-1.jpg')} />
-                        <View style={styles.infoContainer}>
-                            <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> {this.props.news.time} min</Text>
+                    <TouchableOpacity onPress={this.onPress.bind(this)}>
+                        <View style={styles.newsContainer}>
+                            <Image style={styles.image} borderRadius={10} source={require('../resources/news-1.jpg')} />
+                            <View style={styles.infoContainer}>
+                                <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> {this.props.news.time} min</Text>
+                            </View>
+                            <View style={styles.textContainer}>
+                                <Text style={styles.title}>{this.props.news.title}</Text>
+                                <Text style={styles.description}>{this.props.news.description}</Text>
+                            </View>
                         </View>
-                        <View style={styles.textContainer}>
-                            <Text style={styles.title}>{this.props.news.title}</Text>
-                            <Text style={styles.description}>{this.props.news.description}</Text>
-                        </View>
-                    </View>
+                    </TouchableOpacity>
                 </Interactable.View>
             </View>
         );

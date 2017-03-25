@@ -11,6 +11,7 @@ import NavBar from './common/navbar';
 import LandingView from './view/landing';
 import ListNewsView from './view/list_news';
 import NewsView from './view/news';
+import NewsDescriptionView from './view/news_description'
 
 // Styles
 const styles = StyleSheet.create({
@@ -37,6 +38,7 @@ const scenes = Actions.create(
             <Scene key="mainNavbar" navBar={NavBar} drawerImage={require('./resources/hamburger.png')} navigationBarTitleImage={require('./resources/logo_rc_white.png')} >
                 <Scene key="newsList" component={ListNewsView} type={ActionConst.REPLACE} title="Welcome" initial />
                 <Scene key="news" component={NewsView} />
+                <Scene key="newsDescription" component={NewsDescriptionView} />
             </Scene>
         </Scene>
     </Scene>
