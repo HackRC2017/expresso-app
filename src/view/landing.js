@@ -1,15 +1,15 @@
 // Lib imports
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Slider, Button } from 'react-native';
+import { Image, StyleSheet, Text, View, Slider, Button } from 'react-native';
 import {Actions} from "react-native-router-flux";
 
 // Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+
         alignItems: 'center',
-        backgroundColor: '#F5FCFF'
+        backgroundColor: '#FFFFFF'
     },
     welcome: {
         fontSize: 20,
@@ -24,6 +24,19 @@ const styles = StyleSheet.create({
     slider: {
         width: 300,
         height: 10
+    },
+    iconHeader: {
+        marginTop: 80,
+        width: 300,
+        height: 40
+    },
+    button: {
+        backgroundColor: 'red',
+        borderRadius: 10,
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
     }
 });
 
@@ -38,8 +51,9 @@ class LandingView extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Image style={styles.iconHeader} source={require('../resources/logo_rc_header.png')} />
                 <Text style={styles.welcome}>
-                    Salut, combien as-tu de temps pour lire les news?
+                    Temps de lecture
                 </Text>
                 <Slider
                     style={styles.slider}
@@ -51,8 +65,9 @@ class LandingView extends Component {
                 <Text style={styles.welcome}>
                     {this.state.time} minutes
                 </Text>
-
-                <Button title="Let's Go" onPress={() => Actions.main()} />
+                <View style={styles.button}>
+                    <Button color="#FFFFFF" title="Commencer" onPress={() => Actions.main()} />
+                </View>
             </View>
         );
     }

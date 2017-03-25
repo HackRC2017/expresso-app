@@ -13,6 +13,9 @@ class AppNavBar extends NavBar {
             </TouchableOpacity>
         );
     }
+    _renderTitle() {
+        return <Text>Yo</Text>
+    }
 }
 
 module.exports = AppNavBar;
