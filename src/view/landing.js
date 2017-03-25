@@ -86,7 +86,7 @@ class LandingView extends Component {
                 </Text>
 
                 <Text style={styles.descriptionLabel}>
-                    Une selection vous sera proposé en fonction de votre temps
+                    Une sélection vous sera proposée en fonction de votre temps
                 </Text>
 
                 <View style={styles.button}>
