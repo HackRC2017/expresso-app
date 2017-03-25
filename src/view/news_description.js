@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View, Slider } from 'react-native';
-import Interactable from 'react-native-interactable';
 
 
 // Styles

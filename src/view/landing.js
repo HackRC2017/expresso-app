@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         margin: 20,
         fontWeight: '200',
-        marginTop: 100,
+        marginTop: 50,
     },
     timeLabel: {
         fontSize: 28,
@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
     },
     iconHeader: {
         marginTop: 80,
-        width: 300,
-        height: 40
+        width: 280,
+        height: 105
     },
     button: {
         backgroundColor: 'red',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 20,
         paddingRight: 20,
-        marginTop: 120
+        marginTop: 100
     }
 });
 
@@ -68,7 +68,7 @@ class LandingView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Image style={styles.iconHeader} source={require('../resources/logo_rc_header.png')} />
+                <Image style={styles.iconHeader} source={require('../resources/logo_color.png')} />
                 <Text style={styles.welcome}>
                     Mon Temps
                 </Text>

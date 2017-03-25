@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View, Slider, TouchableOpacity } from 'react-native';
-import Interactable from 'react-native-interactable';
 import { Actions } from "react-native-router-flux";
 
 
@@ -21,24 +20,33 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 330,
     },
-    interactable: {
-        borderWidth: 0
-    },
 
     // Info container
+    titleContainer: {
+        backgroundColor: '#000000',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 60,
+        marginTop: -10
+    },
     infoContainer: {
         backgroundColor: '#202020',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 40,
-        marginTop: -10
+        height: 30,
     },
+    titleLabel: {
+        fontSize: 20,
+        color: '#FFFFFF'
+    },
+
+    // Time container
     iconTime: {
-        width: 20,
-        height: 20
+        width: 16,
+        height: 16,
     },
     titleTime: {
-        fontSize: 26,
+        fontSize: 18,
         color: '#FFFFFF'
     },
 
@@ -46,7 +54,7 @@ const styles = StyleSheet.create({
     textContainer: {
         backgroundColor: '#404040',
         padding: 10,
-        height: 225,
+        height: 175,
         overflow: 'hidden',
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10
@@ -57,7 +65,8 @@ const styles = StyleSheet.create({
         paddingBottom: 10
     },
     description: {
-        fontSize: 14,
+        fontSize: 16,
+        lineHeight: 22,
         color: '#FFFFFF'
     }
 });
@@ -73,11 +82,13 @@ class NewsView extends Component {
                 <TouchableOpacity onPress={this.onPress.bind(this)}>
                     <View style={styles.newsContainer}>
                         <Image style={styles.image} borderRadius={10} source={{uri: this.props.news.image}} />
+                        <View style={styles.titleContainer}>
+                            <Text style={styles.titleLabel}>{this.props.news.title}</Text>
+                        </View>
                         <View style={styles.infoContainer}>
                             <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> {this.props.news.time} min</Text>
                         </View>
                         <View style={styles.textContainer}>
-                            <Text style={styles.title}>{this.props.news.title}</Text>
                             <Text style={styles.description}>{this.props.news.description}</Text>
                         </View>
                     </View>
