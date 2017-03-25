@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { Animated, Text, View, Button, StyleSheet } from 'react-native';
 import { NavBar } from 'react-native-router-flux';
 
 class AppNavBar extends NavBar {

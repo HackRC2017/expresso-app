@@ -1,31 +1,35 @@
 import React, { Component } from 'react';
-import { Text, View, Button, StyleSheet } from 'react-native';
+import { Image, Text, View, Button, StyleSheet } from 'react-native';
 import Drawer from 'react-native-drawer';
 import {Actions, DefaultRenderer} from 'react-native-router-flux';
 
 // Styles
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#22CFC1',
+        backgroundColor: '#FFFFFF',
         height: '100%'
     },
+    iconHeader: {
+        marginTop: 40,
+        marginLeft: 20,
+        marginBottom: 40,
+        width: 250,
+        height: 40,
+    },
     button: {
-        padding: 10,
-        backgroundColor: '#22CFC1',
-        borderBottomWidth: 4,
-        borderBottomColor: '#40549F',
-        borderStyle: 'solid'
+        padding: 5,
+        paddingLeft: 15,
+        width: '100%',
+        alignItems: 'flex-start',
     },
-    buttonText: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: '#40549F'
-    },
-    iconLeftMenu: {
-        width: 25,
-        height: 26,
-        marginRight: 5,
-        marginTop: 6
+    buttonSelected: {
+        padding: 5,
+        paddingLeft: 10,
+        borderLeftWidth: 5,
+        borderLeftColor: 'red',
+        borderStyle: 'solid',
+        width: '100%',
+        alignItems: 'flex-start',
     }
 });
 
@@ -34,9 +38,10 @@ class SideMenu extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Button title="Menu 1" onPress={() => Actions.main()} />
-                <Button title="Menu 2" onPress={() => Actions.main()} />
-                <Button title="Menu 3" onPress={() => Actions.modal()} />
+                <Image style={styles.iconHeader} source={require('../resources/logo_rc_header.png')} />
+                <View style={styles.buttonSelected}><Button color="#404040" title="ACCUEIL" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="INTERNATIONAL" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="TEMPO" onPress={() => Actions.modal()} /></View>
             </View>
         );
     }
