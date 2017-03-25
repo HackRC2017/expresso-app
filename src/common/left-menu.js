@@ -39,9 +39,8 @@ class SideMenu extends Component {
         return (
             <View style={styles.container}>
                 <Image style={styles.iconHeader} source={require('../resources/logo_rc_header.png')} />
-                <View style={styles.buttonSelected}><Button color="#404040" title="ACCUEIL" onPress={() => Actions.main()} /></View>
-                <View style={styles.button}><Button color="#404040" style={styles.button} title="INTERNATIONAL" onPress={() => Actions.main()} /></View>
-                <View style={styles.button}><Button color="#404040" style={styles.button} title="TEMPO" onPress={() => Actions.modal()} /></View>
+                <View style={styles.buttonSelected}><Button color="#404040" title="TEMPO" onPress={() => Actions.modal()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="NEWS" onPress={() => Actions.main()} /></View>
             </View>
         );
     }

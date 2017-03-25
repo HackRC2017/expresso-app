@@ -30,10 +30,10 @@ class CustomNavBar extends React.Component {
 // Scenes
 const scenes = Actions.create(
     <Scene key="root">
-        <Scene key="modal" component={Modal} direction="vertical" initial>
+        <Scene key="modal" component={Modal} direction="vertical">
             <Scene key="landing" component={LandingView} title="Welcome" />
         </Scene>
-        <Scene key="main" component={NavigationDrawer} open={false}>
+        <Scene key="main" component={NavigationDrawer} open={false} initial>
             <Scene key="mainNavbar" navBar={NavBar} drawerImage={require('./resources/hamburger.png')} navigationBarTitleImage={require('./resources/logo_rc_white.png')} >
                 <Scene key="newsList" component={ListNewsView} type={ActionConst.REPLACE}  title="Welcome" />
                 <Scene key="news" component={NewsView} initial />

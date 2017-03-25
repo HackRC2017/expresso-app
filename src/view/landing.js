@@ -12,7 +12,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF'
     },
     welcome: {
-        fontSize: 20,
+        fontSize: 32,
+        textAlign: 'center',
+        margin: 20,
+        fontWeight: '200',
+        marginTop: 100,
+    },
+    timeLabel: {
+        fontSize: 28,
+        fontWeight: 'bold',
         textAlign: 'center',
         margin: 20,
     },
@@ -23,7 +31,7 @@ const styles = StyleSheet.create({
     },
     slider: {
         width: 300,
-        height: 10
+        height: 20
     },
     iconHeader: {
         marginTop: 80,
@@ -37,6 +45,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 20,
         paddingRight: 20,
+        marginTop: 200
     }
 });
 
@@ -58,11 +67,13 @@ class LandingView extends Component {
                 <Slider
                     style={styles.slider}
                     minimumValue={1}
-                    maximumValue={60}
+                    maximumValue={30}
                     step={1}
+                    minimumTrackTintColor={'red'}
+                    maximumTrackTintColor={'#E0E0E0'}
                     value={this.state.time}
                     onValueChange={(value) => {this.setState({time: value});}} />
-                <Text style={styles.welcome}>
+                <Text style={styles.timeLabel}>
                     {this.state.time} minutes
                 </Text>
                 <View style={styles.button}>

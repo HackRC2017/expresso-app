@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View, Slider } from 'react-native';
+import Interactable from 'react-native-interactable';
+
 
 // Styles
 const styles = StyleSheet.create({
@@ -11,12 +13,15 @@ const styles = StyleSheet.create({
         padding: 10
     },
     newsContainer: {
-
+        height: 585,
+        marginTop: 60
     },
     image: {
         width: '100%',
-        height: 320,
-        marginTop: 60
+        height: 330,
+    },
+    interactable: {
+        borderWidth: 0
     },
 
     // Info container
@@ -24,7 +29,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#202020',
         justifyContent: 'center',
         alignItems: 'center',
-        height: 40
+        height: 40,
+        marginTop: -10
     },
     iconTime: {
         width: 20,
@@ -40,7 +46,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#404040',
         padding: 10,
         height: 225,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10
     },
     title: {
         fontSize: 20,
@@ -58,18 +66,30 @@ class NewsView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.newsContainer}>
-                    <Image style={styles.image} source={require('../resources/news-1.jpg')} />
-                    <View style={styles.infoContainer}>
-                        <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> 10 min</Text>
+
+                <Interactable.View
+                    key="first"
+                    style={styles.interactable}
+                    horizontalOnly={true}
+                    snapPoints={[
+                    {x: 585},
+                    {x: 0},
+                    {x: -585}
+                ]}>
+
+
+                    <View style={styles.newsContainer}>
+                        <Image style={styles.image} borderRadius={10} source={require('../resources/news-1.jpg')} />
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> 10 min</Text>
+                        </View>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.title}>RDC : une quarantaine de policiers décapités</Text>
+                            <Text style={styles.description}>Des miliciens ont décapité une quarantaine de policiers après leur avoir tendu une embuscade vendredi dans le sud de la République démocratique du Congo (RDC), ont annoncé des responsables locaux samedi. Des miliciens ont décapité une quarantaine de policiers après leur avoir tendu une embuscade vendredi dans le sud de la République démocratique du Congo (RDC), ont annoncé des responsables locaux samedi.</Text>
+                        </View>
                     </View>
-                    <View style={styles.textContainer}>
-                        <Text style={styles.title}>RDC : une quarantaine de policiers décapités</Text>
-                        <Text style={styles.description}>Des miliciens ont décapité une quarantaine de policiers après leur avoir tendu une embuscade vendredi dans le sud de la République démocratique du Congo (RDC), ont annoncé des responsables locaux samedi. Des miliciens ont décapité une quarantaine de policiers après leur avoir tendu une embuscade vendredi dans le sud de la République démocratique du Congo (RDC), ont annoncé des responsables locaux samedi.</Text>
-                    </View>
-                </View>
-                {/*<Text>{this.props.news.title}</Text>
-            <Text>{this.props.news.description}</Text>*/}
+
+                </Interactable.View>
             </View>
         );
     }
