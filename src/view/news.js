@@ -70,25 +70,18 @@ class NewsView extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Interactable.View
-                    key="first"
-                    style={styles.interactable}
-                    horizontalOnly={true}
-                    onSnap={this.onDrawerSnap}
-                    snapPoints={[{x: 585}, {x: 0}, {x: -585}]} >
-                    <TouchableOpacity onPress={this.onPress.bind(this)}>
-                        <View style={styles.newsContainer}>
-                            <Image style={styles.image} borderRadius={10} source={require('../resources/news-1.jpg')} />
-                            <View style={styles.infoContainer}>
-                                <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> {this.props.news.time} min</Text>
-                            </View>
-                            <View style={styles.textContainer}>
-                                <Text style={styles.title}>{this.props.news.title}</Text>
-                                <Text style={styles.description}>{this.props.news.description}</Text>
-                            </View>
+                <TouchableOpacity onPress={this.onPress.bind(this)}>
+                    <View style={styles.newsContainer}>
+                        <Image style={styles.image} borderRadius={10} source={{uri: this.props.news.image}} />
+                        <View style={styles.infoContainer}>
+                            <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> {this.props.news.time} min</Text>
                         </View>
-                    </TouchableOpacity>
-                </Interactable.View>
+                        <View style={styles.textContainer}>
+                            <Text style={styles.title}>{this.props.news.title}</Text>
+                            <Text style={styles.description}>{this.props.news.description}</Text>
+                        </View>
+                    </View>
+                </TouchableOpacity>
             </View>
         );
     }
