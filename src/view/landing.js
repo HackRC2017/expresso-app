@@ -82,11 +82,11 @@ class LandingView extends Component {
                     value={this.state.time}
                     onValueChange={(value) => {this.setState({time: value});}} />
                 <Text style={styles.timeLabel}>
-                    {this.state.time} minutes
+                    {this.state.time} minute{(this.state.time > 1) ? 's' : ''}
                 </Text>
 
                 <Text style={styles.descriptionLabel}>
-                    Une selection vous sera proposé en fonction de votre temps
+                    Une sélection vous sera proposée en fonction de votre temps
                 </Text>
 
                 <View style={styles.button}>
