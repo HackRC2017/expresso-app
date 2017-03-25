@@ -35,8 +35,8 @@ const scenes = Actions.create(
         </Scene>
         <Scene key="main" component={NavigationDrawer} open={false} initial>
             <Scene key="mainNavbar" navBar={NavBar} drawerImage={require('./resources/hamburger.png')} navigationBarTitleImage={require('./resources/logo_rc_white.png')} >
-                <Scene key="newsList" component={ListNewsView} type={ActionConst.REPLACE}  title="Welcome" />
-                <Scene key="news" component={NewsView} initial />
+                <Scene key="newsList" component={ListNewsView} type={ActionConst.REPLACE} title="Welcome" initial />
+                <Scene key="news" component={NewsView} />
             </Scene>
         </Scene>
     </Scene>

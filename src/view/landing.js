@@ -24,6 +24,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         margin: 20,
     },
+    descriptionLabel: {
+        fontSize: 16,
+        fontWeight: '100',
+        textAlign: 'center',
+        marginTop: 50,
+        paddingLeft: 30,
+        paddingRight: 30
+    },
     instructions: {
         textAlign: 'center',
         color: '#333333',
@@ -45,7 +53,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 20,
         paddingRight: 20,
-        marginTop: 200
+        marginTop: 120
     }
 });
 
@@ -62,7 +70,7 @@ class LandingView extends Component {
             <View style={styles.container}>
                 <Image style={styles.iconHeader} source={require('../resources/logo_rc_header.png')} />
                 <Text style={styles.welcome}>
-                    Temps de lecture
+                    Mon Temps
                 </Text>
                 <Slider
                     style={styles.slider}
@@ -76,6 +84,11 @@ class LandingView extends Component {
                 <Text style={styles.timeLabel}>
                     {this.state.time} minutes
                 </Text>
+
+                <Text style={styles.descriptionLabel}>
+                    Une selection vous sera proposé en fonction de votre temps
+                </Text>
+
                 <View style={styles.button}>
                     <Button color="#FFFFFF" title="Commencer" onPress={() => Actions.main()} />
                 </View>

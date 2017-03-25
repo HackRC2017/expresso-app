@@ -63,32 +63,28 @@ const styles = StyleSheet.create({
 
 // View
 class NewsView extends Component {
+    onDrawerSnap() {
+        console.log('yoyoyo');
+    }
     render() {
         return (
             <View style={styles.container}>
-
                 <Interactable.View
                     key="first"
                     style={styles.interactable}
                     horizontalOnly={true}
-                    snapPoints={[
-                    {x: 585},
-                    {x: 0},
-                    {x: -585}
-                ]}>
-
-
+                    onSnap={this.onDrawerSnap}
+                    snapPoints={[{x: 585}, {x: 0}, {x: -585}]} >
                     <View style={styles.newsContainer}>
                         <Image style={styles.image} borderRadius={10} source={require('../resources/news-1.jpg')} />
                         <View style={styles.infoContainer}>
-                            <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> 10 min</Text>
+                            <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> {this.props.news.time} min</Text>
                         </View>
                         <View style={styles.textContainer}>
-                            <Text style={styles.title}>RDC : une quarantaine de policiers décapités</Text>
-                            <Text style={styles.description}>Des miliciens ont décapité une quarantaine de policiers après leur avoir tendu une embuscade vendredi dans le sud de la République démocratique du Congo (RDC), ont annoncé des responsables locaux samedi. Des miliciens ont décapité une quarantaine de policiers après leur avoir tendu une embuscade vendredi dans le sud de la République démocratique du Congo (RDC), ont annoncé des responsables locaux samedi.</Text>
+                            <Text style={styles.title}>{this.props.news.title}</Text>
+                            <Text style={styles.description}>{this.props.news.description}</Text>
                         </View>
                     </View>
-
                 </Interactable.View>
             </View>
         );
