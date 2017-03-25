@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View, Slider } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 
 
 // Styles
@@ -24,10 +25,11 @@ const styles = StyleSheet.create({
 // View
 class NewsDescription extends Component {
     render() {
+        var htmlContent = '<p><a href="http://jsdf.co">&hearts; nice job!</a></p>'
         return (
             <View style={styles.container}>
                 <Text>{this.props.news.title}</Text>
-                <Text>{this.props.news.description}</Text>
+                <HTMLView value={htmlContent} />
             </View>
         );
     }
