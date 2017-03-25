@@ -25,15 +25,17 @@ const styles = StyleSheet.create({
     titleContainer: {
         backgroundColor: '#000000',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
+        paddingLeft: 10,
         height: 60,
         marginTop: -10
     },
     infoContainer: {
-        backgroundColor: '#202020',
+        backgroundColor: '#1A1A1A',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         height: 30,
+        paddingLeft: 12
     },
     titleLabel: {
         fontSize: 20,
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
 
     // Text container
     textContainer: {
-        backgroundColor: '#404040',
+        backgroundColor: '#262626',
         padding: 10,
         height: 175,
         overflow: 'hidden',
