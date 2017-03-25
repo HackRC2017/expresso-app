@@ -83,7 +83,7 @@ class NewsView extends Component {
                     <View style={styles.newsContainer}>
                         <Image style={styles.image} borderRadius={10} source={{uri: this.props.news.image}} />
                         <View style={styles.titleContainer}>
-                            <Text style={styles.titleLabel}>{this.props.news.title}</Text>
+                            <Text accessible={true} accessibilityLabel={'Titre'} style={styles.titleLabel}>{this.props.news.title}</Text>
                         </View>
                         <View style={styles.infoContainer}>
                             <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> {this.props.news.time} min</Text>

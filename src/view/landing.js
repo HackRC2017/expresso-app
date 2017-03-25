@@ -85,7 +85,7 @@ class LandingView extends Component {
                     {this.state.time} minute{(this.state.time > 1) ? 's' : ''}
                 </Text>
 
-                <Text style={styles.descriptionLabel}>
+                <Text style={styles.descriptionLabel} accessible={true}>
                     Une sélection vous sera proposée en fonction de votre temps
                 </Text>
 
