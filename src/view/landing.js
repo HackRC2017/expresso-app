@@ -52,7 +52,7 @@ class LandingView extends Component {
                     {this.state.time} minutes
                 </Text>
 
-                <Button title="Let's Go" onPress={() => Actions.newsList()} />
+                <Button title="Let's Go" onPress={() => Actions.main()} />
             </View>
         );
     }

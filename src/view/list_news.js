@@ -32,9 +32,7 @@ class ListNewsView extends Component {
     render() {
         return (
             <View style={styles.container}>
-
-                    <Button title="News 1" onPress={() => Actions.news({news: {title: 'News 1', description: 'Text'}})} />
-
+                <Button title="News 1" onPress={() => Actions.news({news: {title: 'News 1', description: 'Text'}})} />
                 <Text style={styles.welcome}>
                     News 2
                 </Text>
