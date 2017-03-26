@@ -11,7 +11,7 @@ var PreferenceService = {
     },
     // Theme
     setThemes: function(themeIds) {
-        this.theme = themeIds;
+        this.themes = themeIds;
     },
     getThemes: function() {
         return this.themes;

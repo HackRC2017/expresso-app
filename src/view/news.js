@@ -10,11 +10,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F0F0F0',
-        padding: 10
+        padding: 10,
+        marginTop: 60
     },
     newsContainer: {
         height: 570,
-        marginTop: 60
+        marginTop: 0
     },
     image: {
         width: '100%',
@@ -110,9 +111,9 @@ class NewsView extends Component {
         var summary = this.props.news.summary.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ');
 
         return (
-            <View style={styles.container}>
-                <TouchableOpacity onPress={this.onPress.bind(this)}>
-                    <View style={styles.newsContainer}>
+            <View style={styles.container} accessible={false}>
+                <TouchableOpacity onPress={this.onPress.bind(this)} accessible={false}>
+                    <View style={styles.newsContainer} accessible={false}>
                         <View style={styles.infoContainer}>
                             <Image style={styles.iconTime} source={require('../resources/time_icon.png')} />
                             <Text style={styles.labelTime}>{readTime} MIN.</Text>
