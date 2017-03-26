@@ -9,11 +9,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#E0E0E0',
         padding: 10
     },
     newsContainer: {
-        height: 585,
+        height: 570,
         marginTop: 60
     },
     image: {
@@ -21,34 +21,40 @@ const styles = StyleSheet.create({
         height: 330,
     },
 
+    // Time container
+    infoContainer: {
+        backgroundColor: '#26495C',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        height: 30,
+        paddingLeft: 12,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10
+    },
+    iconTime: {
+        width: 18,
+        height: 18,
+        position: 'absolute',
+        left: 10,
+        top: 6
+    },
+    labelTime: {
+        fontSize: 20,
+        color: '#FFFFFF',
+        fontWeight: 'bold',
+        marginLeft: 23
+    },
+
     // Info container
     titleContainer: {
-        backgroundColor: '#000000',
+        backgroundColor: '#1A1A1A',
         justifyContent: 'center',
         alignItems: 'flex-start',
         paddingLeft: 10,
         height: 60,
-        marginTop: -10
-    },
-    infoContainer: {
-        backgroundColor: '#1A1A1A',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        height: 30,
-        paddingLeft: 12
     },
     titleLabel: {
         fontSize: 20,
-        color: '#FFFFFF'
-    },
-
-    // Time container
-    iconTime: {
-        width: 16,
-        height: 16,
-    },
-    titleTime: {
-        fontSize: 18,
         color: '#FFFFFF'
     },
 
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
     textContainer: {
         backgroundColor: '#262626',
         padding: 10,
-        height: 175,
+        height: 160,
         overflow: 'hidden',
         borderBottomLeftRadius: 10,
         borderBottomRightRadius: 10
@@ -70,6 +76,15 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 22,
         color: '#FFFFFF'
+    },
+    titleContainerText: {
+        width: 300
+    },
+    iconBookmark: {
+        width: 24,
+        height: 36,
+        position: 'absolute',
+        right: 15
     }
 });
 
@@ -83,12 +98,16 @@ class NewsView extends Component {
             <View style={styles.container}>
                 <TouchableOpacity onPress={this.onPress.bind(this)}>
                     <View style={styles.newsContainer}>
-                        <Image style={styles.image} borderRadius={10} source={{uri: this.props.news.image}} />
-                        <View style={styles.titleContainer}>
-                            <Text accessible={true} accessibilityLabel={'Titre'} style={styles.titleLabel}>{this.props.news.title}</Text>
-                        </View>
                         <View style={styles.infoContainer}>
-                            <Text style={styles.titleTime}><Image style={styles.iconTime} source={require('../resources/time-icon.png')} /> {this.props.news.time} min</Text>
+                            <Image style={styles.iconTime} source={require('../resources/time-icon.png')} />
+                            <Text style={styles.labelTime}>{this.props.news.time} MIN.</Text>
+                        </View>
+                        <Image style={styles.image} source={{uri: this.props.news.image}} />
+                        <View style={styles.titleContainer}>
+                            <View style={styles.titleContainerText}>
+                                <Text accessible={true} accessibilityLabel={'Titre'} style={styles.titleLabel}>{this.props.news.title}</Text>
+                            </View>
+                            <Image style={styles.iconBookmark} source={require('../resources/icon-bk-not.png')} />
                         </View>
                         <View style={styles.textContainer}>
                             <Text style={styles.description}>{this.props.news.description}</Text>

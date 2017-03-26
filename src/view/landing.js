@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         height: 105
     },
     button: {
-        backgroundColor: 'red',
+        backgroundColor: '#26495C',
         borderRadius: 10,
         paddingTop: 10,
         paddingBottom: 10,
@@ -77,7 +77,7 @@ class LandingView extends Component {
                     minimumValue={1}
                     maximumValue={30}
                     step={1}
-                    minimumTrackTintColor={'red'}
+                    minimumTrackTintColor={'#26495C'}
                     maximumTrackTintColor={'#E0E0E0'}
                     value={this.state.time}
                     onValueChange={(value) => {this.setState({time: value});}} />
