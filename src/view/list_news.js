@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Swiper from 'react-native-swiper';
+import store from 'react-native-simple-store';
 
 // App imports
 import NewsView from './news';
 import { Url } from '../common/constant';
+import TimerService from '../services/timer';
 
 // Styles
 const styles = StyleSheet.create({
@@ -29,25 +31,34 @@ class ListNewsView extends Component {
         };
     }
     componentDidMount() {
-        // var url = URL.news;
-        // fetch(url, {
-        //     method: 'GET',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     }
-        // }).then((response) => {
-        //     response.json().then((response) => {
-        //         this.setState({news: response.data});
-        //     })
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
+        var remainingTime = TimerService.getRemainingTime();
+        var themesIds = [];
+        store.get('themeIds').then((themeIds) => {
+            if (themeIds) themesIds = themeIds.themeIds;
+            // Build url
+            var url = Url.news;
+            url = url + '?remainingTime=' + remainingTime
+            // Request server
+            // fetch(url, {
+            //     method: 'GET',
+            //     headers: {
+            //         'Accept': 'application/json',
+            //         'Content-Type': 'application/json'
+            //     }
+            // }).then((response) => {
+            //     response.json().then((response) => {
+            //         this.setState({news: response.data});
+            //     })
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
+        });
     }
     render() {
         var news = this.state.news.map((n, i) => {
             return (<NewsView key={'news_' + i} news={n} />);
         });
+        console.log();
         return (
             <View style={styles.container}>
                 <Swiper style={styles.wrapper} showsButtons={false} showsPagination={false}>

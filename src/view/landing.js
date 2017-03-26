@@ -5,7 +5,7 @@ import { Actions } from "react-native-router-flux";
 import store from 'react-native-simple-store';
 
 // App imports
-import TimeService from '../services/timer';
+import TimerService from '../services/timer';
 
 // Styles
 const styles = StyleSheet.create({
@@ -81,7 +81,7 @@ class LandingView extends Component {
         store.save('timeValue', value);
     }
     pressConfirm() {
-        TimeService.setRemainingTime(this.state.time);
+        TimerService.startTempo(this.state.time);
         Actions.main();
     }
     render() {

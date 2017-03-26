@@ -1,5 +1,5 @@
 var CONSTANTS = {
-    HOST_VM: 'http://206.167.181.119'
+    HOST_VM: 'http://52.170.202.244'
 };
 
 var URL = {

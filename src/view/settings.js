@@ -43,14 +43,14 @@ class SettingsView extends Component {
         super(props);
         this.state = {
             themes: themes,
-            checkedIds: [],
+            themeIds: [],
             sizeFont: 2
         };
     }
     componentDidMount() {
-        // Get checkedIds from local storage
-        store.get('checkedIds').then((checkedIds) => {
-            if (checkedIds) { this.setState({checkedIds: checkedIds.checkedIds}); }
+        // Get themeIds from local storage
+        store.get('themeIds').then((themeIds) => {
+            if (themeIds) { this.setState({themeIds: themeIds.themeIds}); }
         })
         // Get size from local storage
         store.get('sizeFont').then((sizeFont) => {
@@ -58,16 +58,16 @@ class SettingsView extends Component {
         })
     }
     onChange(theme, checked) {
-        var checkedIds = this.state.checkedIds;
+        var themeIds = this.state.themeIds;
         if (checked) {
-            checkedIds.splice(checkedIds.indexOf(theme.id), 1);
+            themeIds.splice(themeIds.indexOf(theme.id), 1);
         } else {
-            checkedIds.push(theme.id);
+            themeIds.push(theme.id);
         }
         // Update state
-        this.setState({checkedIds: checkedIds})
+        this.setState({themeIds: themeIds})
         // Persist in local storage
-        store.save('checkedIds', {checkedIds: checkedIds});
+        store.save('themeIds', {themeIds: themeIds});
     }
     onSliderChange(value) {
         // Update state
@@ -77,7 +77,7 @@ class SettingsView extends Component {
     }
     render() {
         var themesRow = this.state.themes.map((t, i) => {
-            var isChecked = this.state.checkedIds.indexOf(t.id) > -1;
+            var isChecked = this.state.themeIds.indexOf(t.id) > -1;
             return (
                 <ListItem key={'theme_' + i} onPress={this.onChange.bind(this, t, isChecked)}>
                     <CheckBox checked={isChecked} />
