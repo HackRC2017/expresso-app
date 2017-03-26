@@ -6,57 +6,67 @@ import HTMLView from 'react-native-htmlview';
 // App imports
 import PreferenceService from '../services/preference';
 
-// Styles
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF'
-    },
-    theme: {
-        fontSize: 14,
-        color: '#808080',
-        paddingBottom: 10
-    },
-    title: {
-        fontSize: 26,
-        color: '#000000',
-        paddingBottom: 5
-    },
-    date: {
-        fontSize: 14,
-        color: '#808080',
-        paddingBottom: 20
-    },
-    description: {
-        fontSize: 14,
-        color: '#FFFFFF'
-    },
-    scrollView: {
-        marginTop: 60
-    },
-    main: {
-        padding: 10
-    },
-    image: {
-        width: '100%',
-        height: 200,
-    }
-});
-
 // View
 class NewsDescription extends Component {
     render() {
         // Styles
+        var textColor = PreferenceService.isHighContrast() ? '#FFFFFF' : '#000000';
+        var bgColor = PreferenceService.isHighContrast() ? '#303030' : '#F5FCFF';
+
+        // Styles
+        var styles = StyleSheet.create({
+            container: {
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: bgColor
+            },
+            theme: {
+                fontSize: 14,
+                color: '#808080',
+                paddingBottom: 10
+            },
+            title: {
+                fontSize: 26,
+                color: textColor,
+                paddingBottom: 5
+            },
+            date: {
+                fontSize: 14,
+                color: '#808080',
+                paddingBottom: 20
+            },
+            description: {
+                fontSize: 14,
+                color: '#FFFFFF'
+            },
+            scrollView: {
+                marginTop: 60
+            },
+            main: {
+                padding: 10
+            },
+            image: {
+                width: '100%',
+                height: 200,
+            }
+        });
+
         var htmlStyles = StyleSheet.create({
-            a: { fontSize: PreferenceService.getFontSize() },
-            p: { fontSize: PreferenceService.getFontSize() },
-            li: { fontSize: PreferenceService.getFontSize() },
-            div: { fontSize: PreferenceService.getFontSize() },
-            span: { fontSize: PreferenceService.getFontSize() },
-            strong: {fontSize: PreferenceService.getFontSize() },
-            footer: {fontSize: PreferenceService.getFontSize() }
+            a: { fontSize: PreferenceService.getFontSize(), color: textColor },
+            p: { fontSize: PreferenceService.getFontSize(), color: textColor },
+            em: {fontSize: PreferenceService.getFontSize(), color: textColor },
+            li: { fontSize: PreferenceService.getFontSize(), color: textColor },
+            div: { fontSize: PreferenceService.getFontSize(), color: textColor },
+            span: { fontSize: PreferenceService.getFontSize(), color: textColor },
+            strong: {fontSize: PreferenceService.getFontSize(), color: textColor },
+            footer: {fontSize: PreferenceService.getFontSize(), color: textColor },
+            h1: {fontSize: PreferenceService.getFontSize(), color: textColor },
+            h2: {fontSize: PreferenceService.getFontSize(), color: textColor },
+            h3: {fontSize: PreferenceService.getFontSize(), color: textColor },
+            h4: {fontSize: PreferenceService.getFontSize(), color: textColor },
+            h5: {fontSize: PreferenceService.getFontSize(), color: textColor },
+            figcaption: {fontSize: PreferenceService.getFontSize(), color: textColor },
         });
         // Image source
         var imageSource = require('../resources/default_article.png');

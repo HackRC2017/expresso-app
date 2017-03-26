@@ -21,7 +21,7 @@ import SettingsView from './view/settings';
 // Styles
 const styles = StyleSheet.create({
     navBar: {
-        backgroundColor: 'red',
+        backgroundColor: '#dd0000',
     },
     navBarButton: {
         tintColor: '#FFFFFF'
@@ -66,7 +66,7 @@ class App extends React.Component {
                 store.save('sizeFont', {sizeFont: 2});
                 PreferenceService.setSize(2);
             }
-        })
+        });
         // Init theme
         store.get('themeIds').then((result) => {
             if (result) {
@@ -75,7 +75,16 @@ class App extends React.Component {
                 store.save('themeIds', {themeIds: []});
                 PreferenceService.setThemes([]);
             }
-        })
+        });
+        // Init constrast
+        store.get('isHighContrast').then((result) => {
+            if (result) {
+                PreferenceService.setContrast(result.isHighContrast);
+            } else {
+                store.save('isHighContrast', {isHighContrast: false});
+                PreferenceService.setContrast(false);
+            }
+        });
     }
     render() {
         return <Router scenes={scenes} navigationBarStyle={styles.navBar} barButtonIconStyle={styles.navBarButton} titleStyle={styles.navBarTitle} />

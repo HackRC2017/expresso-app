@@ -1,6 +1,6 @@
 // Lib imports
 import React, { Component } from 'react';
-import { StyleSheet, View, Slider } from 'react-native';
+import { StyleSheet, View, Slider, Switch } from 'react-native';
 import { Container, Content, Body, ListItem, Text, CheckBox } from 'native-base';
 import { Actions } from "react-native-router-flux";
 import store from 'react-native-simple-store';
@@ -30,12 +30,7 @@ const styles = StyleSheet.create({
     containerSlider: {
         padding: 10
     },
-    exampleLabel: {
 
-    },
-    slider: {
-
-    }
 });
 
 // View
@@ -45,7 +40,8 @@ class SettingsView extends Component {
         this.state = {
             themes: themes,
             themeIds: [],
-            sizeFont: 2
+            sizeFont: 2,
+            isHighContrast: false
         };
     }
     componentDidMount() {
@@ -56,6 +52,10 @@ class SettingsView extends Component {
         // Get size from local storage
         store.get('sizeFont').then((result) => {
             if (result) { this.setState({sizeFont: result.sizeFont}); }
+        })
+        // Get contrast from local storage
+        store.get('isHighContrast').then((result) => {
+            if (result) { this.setState({isHighContrast: result.isHighContrast}); }
         })
     }
     onChange(theme, checked) {
@@ -78,6 +78,13 @@ class SettingsView extends Component {
         // Persist in local storage
         store.save('sizeFont', {sizeFont: value});
         PreferenceService.setSize(value);
+    }
+    onSwitchChange(value) {
+        // Update state
+        this.setState({isHighContrast: value});
+        // Persist in local storage
+        store.save('isHighContrast', {isHighContrast: value});
+        PreferenceService.setContrast(value);
     }
     render() {
         var themesRow = this.state.themes.map((t, i) => {
@@ -104,12 +111,24 @@ class SettingsView extends Component {
                         minimumValue={1}
                         maximumValue={7}
                         step={1}
-                        minimumTrackTintColor={'red'}
+                        minimumTrackTintColor={'#dd0000'}
                         maximumTrackTintColor={'#E0E0E0'}
                         value={this.state.sizeFont}
                         onValueChange={this.onSliderChange.bind(this)} />
                     <TextNative style={{fontSize: fontSize}}>Exemple de texte.</TextNative>
                 </View>
+
+                {/* ========================= Contrast ========================= */}
+                <View style={styles.containerTitle}>
+                    <TextNative style={styles.titleLabel}>Couleurs inversées</TextNative>
+                </View>
+                <Switch
+                    disabled={false}
+                    onValueChange={this.onSwitchChange.bind(this)}
+                    style={{margin: 10}}
+                    onTintColor="#DD0000"
+
+                    value={this.state.isHighContrast} />
 
                 {/* ======================== Themes ========================= */}
                 <View style={styles.containerTitle}>
