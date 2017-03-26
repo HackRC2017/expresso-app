@@ -45,17 +45,21 @@ const styles = StyleSheet.create({
 // View
 class NewsDescription extends Component {
     render() {
+        var imageSource = require('../resources/logo_color.png');
+        if (this.props.news.summaryMultimediaContent.concreteImages && this.props.news.summaryMultimediaContent.concreteImages.length) {
+            imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};
+        }
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollView}>
-                    <Image style={styles.image}  source={{uri: this.props.news.image}} />
+                    <Image style={styles.image}  source={imageSource} />
                     <View style={styles.main}>
-                        <Text style={styles.theme}>ENVIRONNEMENT</Text>
+                        <Text style={styles.theme}>{this.props.news.contentType.name}</Text>
                         <Text style={styles.title}>{this.props.news.title}</Text>
                         {this.props.news.publishedFirstTimeAt ?
                             <Text style={styles.date}>PUBLIÉ {this.props.news.publishedFirstTimeAt.substr(0, 16).replace('T', ' à ')}</Text> : null
                         }
-                        <HTMLView style={styles.htmlView} value={this.props.news.body} />
+                        <HTMLView style={styles.htmlView} value={this.props.news.body.html} />
                     </View>
                 </ScrollView>
             </View>

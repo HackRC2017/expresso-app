@@ -94,15 +94,20 @@ class NewsView extends Component {
         Actions.newsDescription({news: this.props.news})
     }
     render() {
+        var readTime = this.props.news.readTime.total.minutes;
+        var imageSource = require('../resources/logo_color.png');
+        if (this.props.news.summaryMultimediaContent.concreteImages && this.props.news.summaryMultimediaContent.concreteImages.length) {
+            imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};
+        }
         return (
             <View style={styles.container}>
                 <TouchableOpacity onPress={this.onPress.bind(this)}>
                     <View style={styles.newsContainer}>
                         <View style={styles.infoContainer}>
                             <Image style={styles.iconTime} source={require('../resources/time_icon.png')} />
-                            <Text style={styles.labelTime}>{this.props.news.time} MIN.</Text>
+                            <Text style={styles.labelTime}>{readTime} MIN.</Text>
                         </View>
-                        <Image style={styles.image} source={{uri: this.props.news.image}} />
+                        <Image style={styles.image} source={imageSource} />
                         <View style={styles.titleContainer}>
                             <View style={styles.titleContainerText}>
                                 <Text accessible={true} accessibilityLabel={'Titre'} style={styles.titleLabel}>{this.props.news.title}</Text>
@@ -110,7 +115,7 @@ class NewsView extends Component {
                             <Image style={styles.iconBookmark} source={require('../resources/icon-bk-not.png')} />
                         </View>
                         <View style={styles.textContainer}>
-                            <Text style={styles.description}>{this.props.news.description}</Text>
+                            <Text style={styles.description}>{this.props.news.summary}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>

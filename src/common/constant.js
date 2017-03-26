@@ -3,7 +3,7 @@ var CONSTANTS = {
 };
 
 var URL = {
-    news: CONSTANTS.HOST_VM + '/api/login'
+    news: CONSTANTS.HOST_VM + '/articles'
 };
 
 module.exports = {
