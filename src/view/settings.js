@@ -1,6 +1,6 @@
 // Lib imports
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Slider } from 'react-native';
 import { Container, Content, Body, ListItem, Text, CheckBox } from 'native-base';
 import { Actions } from "react-native-router-flux";
 import store from 'react-native-simple-store';
@@ -23,7 +23,17 @@ const styles = StyleSheet.create({
     },
     titleLabel: {
         color: '#808080',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: 18
+    },
+    containerSlider: {
+        padding: 10
+    },
+    exampleLabel: {
+
+    },
+    slider: {
+
     }
 });
 
@@ -33,13 +43,18 @@ class SettingsView extends Component {
         super(props);
         this.state = {
             themes: themes,
-            checkedIds: []
+            checkedIds: [],
+            sizeFont: 2
         };
     }
     componentDidMount() {
         // Get checkedIds from local storage
         store.get('checkedIds').then((checkedIds) => {
             if (checkedIds) { this.setState({checkedIds: checkedIds.checkedIds}); }
+        })
+        // Get size from local storage
+        store.get('sizeFont').then((sizeFont) => {
+            if (sizeFont) { this.setState({sizeFont: sizeFont.sizeFont}); }
         })
     }
     onChange(theme, checked) {
@@ -51,8 +66,14 @@ class SettingsView extends Component {
         }
         // Update state
         this.setState({checkedIds: checkedIds})
-        // Persiste in local storage
+        // Persist in local storage
         store.save('checkedIds', {checkedIds: checkedIds});
+    }
+    onSliderChange(value) {
+        // Update state
+        this.setState({sizeFont: value});
+        // Persist in local storage
+        store.save('sizeFont', {sizeFont: value});
     }
     render() {
         var themesRow = this.state.themes.map((t, i) => {
@@ -66,8 +87,27 @@ class SettingsView extends Component {
                 </ListItem>
             );
         });
+        var fontSize = 14 + (this.state.sizeFont * 2);
         return (
             <View style={styles.container}>
+                {/* ========================= Size ========================= */}
+                <View style={styles.containerTitle}>
+                    <TextNative style={styles.titleLabel}>Taille Texte</TextNative>
+                </View>
+                <View style={styles.containerSlider}>
+                    <Slider
+                        style={styles.slider}
+                        minimumValue={1}
+                        maximumValue={3}
+                        step={1}
+                        minimumTrackTintColor={'red'}
+                        maximumTrackTintColor={'#E0E0E0'}
+                        value={this.state.sizeFont}
+                        onValueChange={this.onSliderChange.bind(this)} />
+                    <TextNative style={{fontSize: fontSize}}>Exemple taille</TextNative>
+                </View>
+
+                {/* ======================== Themes ========================= */}
                 <View style={styles.containerTitle}>
                     <TextNative style={styles.titleLabel}>Thèmes Tempo</TextNative>
                 </View>
