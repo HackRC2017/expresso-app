@@ -11,10 +11,20 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F5FCFF'
     },
+    theme: {
+        fontSize: 14,
+        color: '#808080',
+        paddingBottom: 10
+    },
     title: {
         fontSize: 26,
         color: '#000000',
-        paddingBottom: 10
+        paddingBottom: 5
+    },
+    date: {
+        fontSize: 14,
+        color: '#808080',
+        paddingBottom: 20
     },
     description: {
         fontSize: 14,
@@ -35,13 +45,14 @@ const styles = StyleSheet.create({
 // View
 class NewsDescription extends Component {
     render() {
-        var htmlContent = '<p><a href="http://jsdf.co">&hearts; nice job!</a></p>'
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <Image style={styles.image}  source={{uri: this.props.news.image}} />
                     <View style={styles.main}>
+                        <Text style={styles.theme}>ENVIRONNEMENT</Text>
                         <Text style={styles.title}>{this.props.news.title}</Text>
+                        <Text style={styles.date}>PUBLIÉ {this.props.news.publishedFirstTimeAt.substr(0, 16).replace('T', ' à ')}</Text>
                         <HTMLView style={styles.htmlView} value={this.props.news.body} />
                     </View>
                 </ScrollView>

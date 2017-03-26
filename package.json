@@ -13,6 +13,7 @@
     "react-native-htmlview": "^0.8.0",
     "react-native-linear-gradient": "^2.0.0",
     "react-native-router-flux": "^3.38.0",
+    "react-native-simple-store": "^1.1.0",
     "react-native-swiper": "^1.5.4"
   },
   "devDependencies": {

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View, Slider, Button } from 'react-native';
 import { Actions } from "react-native-router-flux";
+import store from 'react-native-simple-store';
 
 // Styles
 const styles = StyleSheet.create({
@@ -61,9 +62,20 @@ const styles = StyleSheet.create({
 class LandingView extends Component {
     constructor(props) {
         super(props);
+        var timeValue = store.get('timeValue')
         this.state = {
             time: 10
         };
+    }
+    componentDidMount() {
+        // Get timeValue from local storage
+        store.get('timeValue').then((timeValue) => {
+            if (timeValue) { this.setState({time: timeValue}); }
+        })
+    }
+    onChange(value) {
+        this.setState({time: value});
+        store.save('timeValue', value);
     }
     render() {
         return (
@@ -80,7 +92,7 @@ class LandingView extends Component {
                     minimumTrackTintColor={'#26495C'}
                     maximumTrackTintColor={'#E0E0E0'}
                     value={this.state.time}
-                    onValueChange={(value) => {this.setState({time: value});}} />
+                    onValueChange={this.onChange.bind(this)} />
                 <Text style={styles.timeLabel}>
                     {this.state.time} minute{(this.state.time > 1) ? 's' : ''}
                 </Text>

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     },
     iconTime: {
         width: 18,
-        height: 18,
+        height: 20,
         position: 'absolute',
         left: 10,
         top: 6
@@ -99,7 +99,7 @@ class NewsView extends Component {
                 <TouchableOpacity onPress={this.onPress.bind(this)}>
                     <View style={styles.newsContainer}>
                         <View style={styles.infoContainer}>
-                            <Image style={styles.iconTime} source={require('../resources/time-icon.png')} />
+                            <Image style={styles.iconTime} source={require('../resources/time_icon.png')} />
                             <Text style={styles.labelTime}>{this.props.news.time} MIN.</Text>
                         </View>
                         <Image style={styles.image} source={{uri: this.props.news.image}} />
