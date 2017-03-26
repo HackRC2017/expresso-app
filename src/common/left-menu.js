@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     },
     buttonSeparator: {
         padding: 5,
+        paddingTop: 10,
         paddingLeft: 15,
         width: '100%',
         alignItems: 'flex-start',
