@@ -64,7 +64,7 @@ class NewsDescription extends Component {
             imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};
         }
         // Strip HTML
-        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace('&nbsp;', ' ');
+        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ');
 
         return (
             <View style={styles.container}>

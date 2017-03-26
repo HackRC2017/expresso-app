@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View, Slider, TouchableOpacity } from 'react-native';
 import { Actions } from "react-native-router-flux";
-import HTMLView from 'react-native-htmlview';
 
 
 // Styles
@@ -10,7 +9,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#E0E0E0',
+        backgroundColor: '#F0F0F0',
         padding: 10
     },
     newsContainer: {
@@ -90,19 +89,6 @@ const styles = StyleSheet.create({
     }
 });
 
-var htmlStyles = StyleSheet.create({
-    p: {
-        fontWeight: 'bold',
-        color: '#FFFFFF',
-        fontSize: 16
-    },
-    em: {
-        fontWeight: 'bold',
-        color: '#FFFFFF',
-        fontSize: 16
-    }
-});
-
 // View
 class NewsView extends Component {
     onPress() {
@@ -116,12 +102,12 @@ class NewsView extends Component {
         }
         // Image source
         var imageSource = require('../resources/default_article.png');
-        if (this.props.news.summaryMultimediaContent.concreteImages && this.props.news.summaryMultimediaContent.concreteImages.length) {
+        if (this.props.news.summaryMultimediaContent.concreteImages && this.props.news.summaryMultimediaContent.concreteImages.length > 0) {
             imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};
         }
         // Strip HTML
-        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace('&nbsp;', ' ');
-        var summary = this.props.news.summary.replace(/<(?:.|\n)*?>/gm, '').replace('&nbsp;', ' ');
+        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ');
+        var summary = this.props.news.summary.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ');
 
         return (
             <View style={styles.container}>
@@ -134,7 +120,6 @@ class NewsView extends Component {
                         <Image style={styles.image} source={imageSource} />
                         <View style={styles.titleContainer}>
                             <View style={styles.titleContainerText}>
-                                { /*<HTMLView stylesheet={htmlStyles} value={'<p>' + this.props.news.title + '</p>'} /> */ }
                                 <Text accessible={true} accessibilityLabel={'Titre'} style={styles.titleLabel}>{title}</Text>
                             </View>
                             <Image style={styles.iconBookmark} source={require('../resources/icon-bk-not.png')} />
