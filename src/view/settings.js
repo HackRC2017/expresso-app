@@ -1,25 +1,29 @@
 // Lib imports
 import React, { Component } from 'react';
-import { Image, StyleSheet, Text, View, Slider, Button } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Container, Content, Body, ListItem, Text, CheckBox } from 'native-base';
 import { Actions } from "react-native-router-flux";
 import store from 'react-native-simple-store';
+var TextNative = require('react-native').Text;
+
+// App import
+import themes from '../common/theme';
 
 // Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
-        alignItems: 'center',
-        backgroundColor: '#FFFFFF'
+        marginTop: 70
     },
-    button: {
-        backgroundColor: '#26495C',
-        borderRadius: 10,
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
-        marginTop: 100
+    containerTitle: {
+        borderBottomWidth: 2,
+        borderBottomColor: '#E0E0E0',
+        borderStyle: 'solid',
+        padding: 10
+    },
+    titleLabel: {
+        color: '#808080',
+        fontWeight: 'bold'
     }
 });
 
@@ -27,27 +31,51 @@ const styles = StyleSheet.create({
 class SettingsView extends Component {
     constructor(props) {
         super(props);
-        var timeValue = store.get('timeValue')
         this.state = {
-            time: 10
+            themes: themes,
+            checkedIds: []
         };
     }
     componentDidMount() {
-        // Get timeValue from local storage
-        store.get('timeValue').then((timeValue) => {
-            if (timeValue) { this.setState({time: timeValue}); }
+        // Get checkedIds from local storage
+        store.get('checkedIds').then((checkedIds) => {
+            if (checkedIds) { this.setState({checkedIds: checkedIds.checkedIds}); }
         })
     }
-    onChange(value) {
-        this.setState({time: value});
-        store.save('timeValue', value);
+    onChange(theme, checked) {
+        var checkedIds = this.state.checkedIds;
+        if (checked) {
+            checkedIds.splice(checkedIds.indexOf(theme.id), 1);
+        } else {
+            checkedIds.push(theme.id);
+        }
+        // Update state
+        this.setState({checkedIds: checkedIds})
+        // Persiste in local storage
+        store.save('checkedIds', {checkedIds: checkedIds});
     }
     render() {
+        var themesRow = this.state.themes.map((t, i) => {
+            var isChecked = this.state.checkedIds.indexOf(t.id) > -1;
+            return (
+                <ListItem key={'theme_' + i} onPress={this.onChange.bind(this, t, isChecked)}>
+                    <CheckBox checked={isChecked} />
+                    <Body>
+                        <Text>{t.name}</Text>
+                    </Body>
+                </ListItem>
+            );
+        });
         return (
             <View style={styles.container}>
-                <View style={styles.button}>
-                    <Button color="#FFFFFF" title="Commencer" onPress={() => Actions.main()} />
+                <View style={styles.containerTitle}>
+                    <TextNative style={styles.titleLabel}>Thèmes Tempo</TextNative>
                 </View>
+                <Container>
+                    <Content >
+                        {themesRow}
+                    </Content>
+                </Container>
             </View>
         );
     }
