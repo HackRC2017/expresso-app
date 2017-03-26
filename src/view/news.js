@@ -104,8 +104,8 @@ class NewsView extends Component {
             imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};
         }
         // Strip HTML
-        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ');
-        var summary = this.props.news.summary.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ');
+        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ').replace(/&laquo;/g, '«').replace(/&raquo;/g, '»');
+        var summary = this.props.news.summary.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ').replace(/&laquo;/g, '«').replace(/&raquo;/g, '»');
 
         return (
             <View style={styles.container} accessible={false}>

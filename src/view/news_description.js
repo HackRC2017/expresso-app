@@ -1,7 +1,8 @@
 // Lib imports
 import React, { Component } from 'react';
-import { Image, Slider, StyleSheet, Text, View, ScrollView } from 'react-native';
+import { Image, Slider, StyleSheet, Text, View, ScrollView, Button } from 'react-native';
 import HTMLView from 'react-native-htmlview';
+import { Actions } from "react-native-router-flux";
 
 // App imports
 import PreferenceService from '../services/preference';
@@ -74,7 +75,7 @@ class NewsDescription extends Component {
             imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};
         }
         // Strip HTML
-        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ');
+        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace(/&nbsp;/g, ' ').replace(/&laquo;/g, '«').replace(/&raquo;/g, '»');
 
         return (
             <View style={styles.container}>
@@ -87,6 +88,7 @@ class NewsDescription extends Component {
                             <Text style={styles.date}>PUBLIÉ {this.props.news.publishedFirstTimeAt.substr(0, 16).replace('T', ' à ')}</Text> : null
                         }
                         <HTMLView stylesheet={htmlStyles} value={this.props.news.body.html} />
+                        <Button title="Retour" color={textColor} onPress={() => {Actions.pop()}} />
                     </View>
                 </ScrollView>
             </View>

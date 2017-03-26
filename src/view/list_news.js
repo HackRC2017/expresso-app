@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import Swiper from 'react-native-swiper';
 import store from 'react-native-simple-store';
+import { Actions } from "react-native-router-flux";
 
 // App imports
 import { Url } from '../common/constant';
