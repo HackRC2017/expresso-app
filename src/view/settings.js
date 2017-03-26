@@ -108,7 +108,7 @@ class SettingsView extends Component {
                         maximumTrackTintColor={'#E0E0E0'}
                         value={this.state.sizeFont}
                         onValueChange={this.onSliderChange.bind(this)} />
-                    <TextNative style={{fontSize: fontSize}}>Exemple taille</TextNative>
+                    <TextNative style={{fontSize: fontSize}}>Exemple de texte.</TextNative>
                 </View>
 
                 {/* ======================== Themes ========================= */}
