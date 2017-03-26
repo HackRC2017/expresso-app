@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
     },
     navBarButton: {
         tintColor: '#FFFFFF'
+    },
+    navBarTitle: {
+        color: '#FFFFFF',
+        fontWeight: '100'
     }
 });
 
@@ -39,11 +43,11 @@ const scenes = Actions.create(
             <Scene key="landing" component={LandingView} title="Welcome" />
         </Scene>
         <Scene key="main" component={NavigationDrawer} open={false}>
-            <Scene key="mainNavbar" navBar={NavBar}  type={ActionConst.REPLACE} drawerImage={require('./resources/hamburger.png')} navigationBarTitleImage={require('./resources/logo_rc_white.png')} >
-                <Scene key="newsList" component={ListNewsView} initial />
+            <Scene key="mainNavbar" navBar={NavBar} type={ActionConst.REPLACE} drawerImage={require('./resources/hamburger.png')} navigationBarTitleImage={require('./resources/logo_rc_white.png')} >
+                <Scene key="newsList" component={ListNewsView} title="TEMPO" initial />
                 <Scene key="news" component={NewsView} />
                 <Scene key="newsDescription" component={NewsDescriptionView} />
-                <Scene key="settings" component={SettingsView} />
+                <Scene key="settings" component={SettingsView} title="PRÉFÉRENCES" type={ActionConst.REPLACE} />
             </Scene>
         </Scene>
     </Scene>
@@ -51,7 +55,7 @@ const scenes = Actions.create(
 
 class App extends React.Component {
     render() {
-        return <Router scenes={scenes} navigationBarStyle={styles.navBar} barButtonIconStyle={styles.navBarButton} />
+        return <Router scenes={scenes} navigationBarStyle={styles.navBar} barButtonIconStyle={styles.navBarButton} titleStyle={styles.navBarTitle} />
     }
 }
 

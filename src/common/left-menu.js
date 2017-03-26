@@ -24,24 +24,50 @@ const styles = StyleSheet.create({
     },
     buttonSelected: {
         padding: 5,
-        paddingLeft: 10,
-        borderLeftWidth: 5,
-        borderLeftColor: 'red',
+        paddingLeft: 7,
+        borderLeftWidth: 8,
+        borderLeftColor: '#26495C',
         borderStyle: 'solid',
         width: '100%',
         alignItems: 'flex-start',
+    },
+    buttonSeparator: {
+        padding: 5,
+        paddingLeft: 15,
+        width: '100%',
+        alignItems: 'flex-start',
+        borderTopWidth: 2,
+        borderTopColor: '#909090',
+        borderStyle: 'solid'
+    },
+    buttonBold: {
+        paddingTop: 4,
+        paddingLeft: 10,
+        fontSize: 18,
+        fontWeight: '500',
+        color: '#404040',
     }
 });
 
 
 class SideMenu extends Component {
+    static contextTypes = {
+        drawer: React.PropTypes.object
+    };
     render() {
         return (
             <View style={styles.container}>
                 <Image style={styles.iconHeader} source={require('../resources/logo_rc_header.png')} />
                 <View style={styles.buttonSelected}><Button color="#404040" title="TEMPO" onPress={() => Actions.modal()} /></View>
-                <View style={styles.button}><Button color="#404040" style={styles.button} title="NEWS" onPress={() => Actions.main()} /></View>
-                <View style={styles.button}><Button color="#404040" style={styles.button} title="SETTINGS" onPress={() => Actions.settings()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="INTERNATIONAL" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="POLITIQUE" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="ÉCONOMIE" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="SPORTS" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="SANTÉ" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="ARTS" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="SCIENCE" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="TECHNO" onPress={() => Actions.main()} /></View>
+                <View style={styles.buttonSeparator}><Text color="#404040" style={styles.buttonBold} onPress={() => {this.context.drawer.close(); Actions.settings()}}>PRÉFÉRENCES</Text></View>
             </View>
         );
     }

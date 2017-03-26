@@ -1,7 +1,7 @@
+// Lib imports
 import React, { Component } from 'react';
-import { Image, StyleSheet, Text, View, Slider, ScrollView } from 'react-native';
+import { Image, Slider, StyleSheet, Text, View, ScrollView } from 'react-native';
 import HTMLView from 'react-native-htmlview';
-
 
 // Styles
 const styles = StyleSheet.create({

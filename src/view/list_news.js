@@ -1,9 +1,11 @@
+// Lib imports
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Slider, Button } from 'react-native';
-import {Actions} from "react-native-router-flux";
-import NewsView from './news';
+import { StyleSheet, View } from 'react-native';
 import Swiper from 'react-native-swiper';
 
+// App imports
+import NewsView from './news';
+import { Url } from '../common/constant';
 
 // Styles
 const styles = StyleSheet.create({
@@ -12,20 +14,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF'
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 20,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-    slider: {
-        width: 300,
-        height: 10
     }
 });
 
@@ -39,6 +27,22 @@ class ListNewsView extends Component {
                 {title: 'RDC : une quarantaine de policiers décapités', time: 5, description: 'Des miliciens ont décapité une quarantaine de policiers après leur avoir tendu une embuscade vendredi dans le sud de la République démocratique du Congo (RDC), ont annoncé des responsables locaux samedi. Des miliciens ont décapité une quarantaine de policiers après leur avoir tendu une embuscade vendredi dans le sud de la République démocratique du Congo (RDC), ont annoncé des responsables locaux samedi.', image: 'https://images.radio-canada.ca/w_635,h_357/v1/ici-info/16x9/congo-rdc-casques-bleus.jpg'}
             ]
         };
+    }
+    componentDidMount() {
+        // var url = URL.news;
+        // fetch(url, {
+        //     method: 'GET',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     }
+        // }).then((response) => {
+        //     response.json().then((response) => {
+        //         this.setState({news: response.data});
+        //     })
+        // }).catch((error) => {
+        //     console.log(error);
+        // });
     }
     render() {
         var news = this.state.news.map((n, i) => {
