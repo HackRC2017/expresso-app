@@ -95,6 +95,9 @@ class NewsView extends Component {
     }
     render() {
         var readTime = this.props.news.readTime.total.minutes;
+        if (this.props.news.readTime.total.seconds > 30) {
+            readTime++;
+        }
         var imageSource = require('../resources/logo_color.png');
         if (this.props.news.summaryMultimediaContent.concreteImages && this.props.news.summaryMultimediaContent.concreteImages.length) {
             imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};

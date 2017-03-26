@@ -5,9 +5,11 @@ import Swiper from 'react-native-swiper';
 import store from 'react-native-simple-store';
 
 // App imports
-import NewsView from './news';
 import { Url } from '../common/constant';
+import NewsView from './news';
+import PreferenceService from '../services/preference';
 import TimerService from '../services/timer';
+
 
 // Styles
 const styles = StyleSheet.create({
@@ -30,27 +32,26 @@ class ListNewsView extends Component {
     componentDidMount() {
         var remainingTime = TimerService.getRemainingTime();
         var themesIds = [];
-        store.get('themeIds').then((themeIds) => {
-            if (themeIds) themesIds = themeIds.themeIds;
-            // Build url
-            var url = Url.news;
-            url = url + '?max_readtime=' + remainingTime
-            // Request server
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            }).then((response) => {
-                console.log(response)
-                response.json().then((response) => {
-                    console.log(response.articles);
-                    this.setState({news: response.articles});
-                })
-            }).catch((error) => {
-                console.log(error);
-            });
+        // Build url
+        var url = Url.news;
+        url = url + '?max_readtime=' + remainingTime;
+        var themeIds = PreferenceService.getThemes();
+        if (themeIds && themeIds.length) url = url + '&themes=' + themeIds.join(',');
+        // Request server
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then((response) => {
+            console.log(response)
+            response.json().then((response) => {
+                console.log(response.articles);
+                this.setState({news: response.articles});
+            })
+        }).catch((error) => {
+            console.log(error);
         });
     }
     render() {

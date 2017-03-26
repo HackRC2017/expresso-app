@@ -2,10 +2,14 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
 import {Actions, ActionConst, Scene, Router, Modal} from 'react-native-router-flux';
+import store from 'react-native-simple-store';
 
 // Control
 import NavigationDrawer from './common/left-menu';
 import NavBar from './common/navbar';
+
+// Services
+import PreferenceService from './services/preference';
 
 // Views
 import LandingView from './view/landing';
@@ -54,6 +58,27 @@ const scenes = Actions.create(
 );
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        // Init size
+        store.get('sizeFont').then((result) => {
+            if (result) {
+                PreferenceService.setSize(result.sizeFont);
+            } else {
+                store.save('sizeFont', {sizeFont: 2});
+                PreferenceService.setSize(2);
+            }
+        })
+        // Init theme
+        store.get('themeIds').then((result) => {
+            if (result) {
+                PreferenceService.setThemes(result.themeIds);
+            } else {
+                store.save('themeIds', {themeIds: []});
+                PreferenceService.setThemes([]);
+            }
+        })
+    }
     render() {
         return <Router scenes={scenes} navigationBarStyle={styles.navBar} barButtonIconStyle={styles.navBarButton} titleStyle={styles.navBarTitle} />
     }

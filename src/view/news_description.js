@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import { Image, Slider, StyleSheet, Text, View, ScrollView } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 
+// App imports
+import PreferenceService from '../services/preference';
+
 // Styles
 const styles = StyleSheet.create({
     container: {
@@ -45,10 +48,22 @@ const styles = StyleSheet.create({
 // View
 class NewsDescription extends Component {
     render() {
+        // Styles
+        var htmlStyles = StyleSheet.create({
+            a: { fontSize: PreferenceService.getFontSize() },
+            p: { fontSize: PreferenceService.getFontSize() },
+            li: { fontSize: PreferenceService.getFontSize() },
+            div: { fontSize: PreferenceService.getFontSize() },
+            span: { fontSize: PreferenceService.getFontSize() },
+            strong: {fontSize: PreferenceService.getFontSize() },
+            footer: {fontSize: PreferenceService.getFontSize() }
+        });
+        // Image source
         var imageSource = require('../resources/logo_color.png');
         if (this.props.news.summaryMultimediaContent.concreteImages && this.props.news.summaryMultimediaContent.concreteImages.length) {
             imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};
         }
+
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollView}>
@@ -59,7 +74,7 @@ class NewsDescription extends Component {
                         {this.props.news.publishedFirstTimeAt ?
                             <Text style={styles.date}>PUBLIÉ {this.props.news.publishedFirstTimeAt.substr(0, 16).replace('T', ' à ')}</Text> : null
                         }
-                        <HTMLView style={styles.htmlView} value={this.props.news.body.html} />
+                        <HTMLView stylesheet={htmlStyles} value={this.props.news.body.html} />
                     </View>
                 </ScrollView>
             </View>

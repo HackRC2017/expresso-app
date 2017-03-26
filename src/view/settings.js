@@ -8,6 +8,7 @@ var TextNative = require('react-native').Text;
 
 // App import
 import themes from '../common/theme';
+import PreferenceService from '../services/preference';
 
 // Styles
 const styles = StyleSheet.create({
@@ -53,11 +54,12 @@ class SettingsView extends Component {
             if (themeIds) { this.setState({themeIds: themeIds.themeIds}); }
         })
         // Get size from local storage
-        store.get('sizeFont').then((sizeFont) => {
-            if (sizeFont) { this.setState({sizeFont: sizeFont.sizeFont}); }
+        store.get('sizeFont').then((result) => {
+            if (result) { this.setState({sizeFont: result.sizeFont}); }
         })
     }
     onChange(theme, checked) {
+        // Update theme ids
         var themeIds = this.state.themeIds;
         if (checked) {
             themeIds.splice(themeIds.indexOf(theme.id), 1);
@@ -68,12 +70,14 @@ class SettingsView extends Component {
         this.setState({themeIds: themeIds})
         // Persist in local storage
         store.save('themeIds', {themeIds: themeIds});
+        PreferenceService.setThemes(themeIds)
     }
     onSliderChange(value) {
         // Update state
         this.setState({sizeFont: value});
         // Persist in local storage
         store.save('sizeFont', {sizeFont: value});
+        PreferenceService.setSize(value);
     }
     render() {
         var themesRow = this.state.themes.map((t, i) => {
@@ -87,7 +91,7 @@ class SettingsView extends Component {
                 </ListItem>
             );
         });
-        var fontSize = 14 + (this.state.sizeFont * 2);
+        var fontSize = PreferenceService.getFontSize();
         return (
             <View style={styles.container}>
                 {/* ========================= Size ========================= */}
@@ -98,7 +102,7 @@ class SettingsView extends Component {
                     <Slider
                         style={styles.slider}
                         minimumValue={1}
-                        maximumValue={3}
+                        maximumValue={7}
                         step={1}
                         minimumTrackTintColor={'red'}
                         maximumTrackTintColor={'#E0E0E0'}
