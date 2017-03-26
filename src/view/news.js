@@ -96,11 +96,8 @@ class NewsView extends Component {
         Actions.newsDescription({news: this.props.news})
     }
     render() {
-        // Adjust time
+        // Read time
         var readTime = this.props.news.readTime.total.minutes;
-        if (this.props.news.readTime.total.seconds > 30) {
-            readTime++;
-        }
         // Image source
         var imageSource = require('../resources/default_article.png');
         if (this.props.news.summaryMultimediaContent.concreteImages && this.props.news.summaryMultimediaContent.concreteImages.length > 0) {
