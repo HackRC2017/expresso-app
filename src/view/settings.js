@@ -4,9 +4,6 @@ import { Image, StyleSheet, Text, View, Slider, Button } from 'react-native';
 import { Actions } from "react-native-router-flux";
 import store from 'react-native-simple-store';
 
-// App imports
-import TimeService from '../services/timer';
-
 // Styles
 const styles = StyleSheet.create({
     container: {
@@ -62,7 +59,7 @@ const styles = StyleSheet.create({
 });
 
 // View
-class LandingView extends Component {
+class SettingsView extends Component {
     constructor(props) {
         super(props);
         var timeValue = store.get('timeValue')
@@ -79,10 +76,6 @@ class LandingView extends Component {
     onChange(value) {
         this.setState({time: value});
         store.save('timeValue', value);
-    }
-    pressConfirm() {
-        TimeService.setRemainingTime(this.state.time);
-        Actions.main();
     }
     render() {
         return (
@@ -109,11 +102,11 @@ class LandingView extends Component {
                 </Text>
 
                 <View style={styles.button}>
-                    <Button color="#FFFFFF" title="Commencer" onPress={this.pressConfirm.bind(this)} />
+                    <Button color="#FFFFFF" title="Commencer" onPress={() => Actions.main()} />
                 </View>
             </View>
         );
     }
 }
 
-module.exports = LandingView;
+module.exports = SettingsView;

@@ -41,6 +41,7 @@ class SideMenu extends Component {
                 <Image style={styles.iconHeader} source={require('../resources/logo_rc_header.png')} />
                 <View style={styles.buttonSelected}><Button color="#404040" title="TEMPO" onPress={() => Actions.modal()} /></View>
                 <View style={styles.button}><Button color="#404040" style={styles.button} title="NEWS" onPress={() => Actions.main()} /></View>
+                <View style={styles.button}><Button color="#404040" style={styles.button} title="SETTINGS" onPress={() => Actions.settings()} /></View>
             </View>
         );
     }

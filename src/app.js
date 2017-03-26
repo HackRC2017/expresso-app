@@ -12,6 +12,7 @@ import LandingView from './view/landing';
 import ListNewsView from './view/list_news';
 import NewsView from './view/news';
 import NewsDescriptionView from './view/news_description'
+import SettingsView from './view/settings';
 
 // Styles
 const styles = StyleSheet.create({
@@ -42,6 +43,7 @@ const scenes = Actions.create(
                 <Scene key="newsList" component={ListNewsView} initial />
                 <Scene key="news" component={NewsView} />
                 <Scene key="newsDescription" component={NewsDescriptionView} />
+                <Scene key="settings" component={SettingsView} />
             </Scene>
         </Scene>
     </Scene>

@@ -52,7 +52,9 @@ class NewsDescription extends Component {
                     <View style={styles.main}>
                         <Text style={styles.theme}>ENVIRONNEMENT</Text>
                         <Text style={styles.title}>{this.props.news.title}</Text>
-                        <Text style={styles.date}>PUBLIÉ {this.props.news.publishedFirstTimeAt.substr(0, 16).replace('T', ' à ')}</Text>
+                        {this.props.news.publishedFirstTimeAt ?
+                            <Text style={styles.date}>PUBLIÉ {this.props.news.publishedFirstTimeAt.substr(0, 16).replace('T', ' à ')}</Text> : null
+                        }
                         <HTMLView style={styles.htmlView} value={this.props.news.body} />
                     </View>
                 </ScrollView>
