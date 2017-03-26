@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View, Slider, TouchableOpacity } from 'react-native';
 import { Actions } from "react-native-router-flux";
+import HTMLView from 'react-native-htmlview';
 
 
 // Styles
@@ -54,7 +55,8 @@ const styles = StyleSheet.create({
         height: 60,
     },
     titleLabel: {
-        fontSize: 20,
+        fontWeight: 'bold',
+        fontSize: 16,
         color: '#FFFFFF'
     },
 
@@ -88,20 +90,39 @@ const styles = StyleSheet.create({
     }
 });
 
+var htmlStyles = StyleSheet.create({
+    p: {
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        fontSize: 16
+    },
+    em: {
+        fontWeight: 'bold',
+        color: '#FFFFFF',
+        fontSize: 16
+    }
+});
+
 // View
 class NewsView extends Component {
     onPress() {
         Actions.newsDescription({news: this.props.news})
     }
     render() {
+        // Adjust time
         var readTime = this.props.news.readTime.total.minutes;
         if (this.props.news.readTime.total.seconds > 30) {
             readTime++;
         }
+        // Image source
         var imageSource = require('../resources/default_article.png');
         if (this.props.news.summaryMultimediaContent.concreteImages && this.props.news.summaryMultimediaContent.concreteImages.length) {
             imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};
         }
+        // Strip HTML
+        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace('&nbsp;', ' ');
+        var summary = this.props.news.summary.replace(/<(?:.|\n)*?>/gm, '').replace('&nbsp;', ' ');
+
         return (
             <View style={styles.container}>
                 <TouchableOpacity onPress={this.onPress.bind(this)}>
@@ -113,12 +134,13 @@ class NewsView extends Component {
                         <Image style={styles.image} source={imageSource} />
                         <View style={styles.titleContainer}>
                             <View style={styles.titleContainerText}>
-                                <Text accessible={true} accessibilityLabel={'Titre'} style={styles.titleLabel}>{this.props.news.title}</Text>
+                                { /*<HTMLView stylesheet={htmlStyles} value={'<p>' + this.props.news.title + '</p>'} /> */ }
+                                <Text accessible={true} accessibilityLabel={'Titre'} style={styles.titleLabel}>{title}</Text>
                             </View>
                             <Image style={styles.iconBookmark} source={require('../resources/icon-bk-not.png')} />
                         </View>
                         <View style={styles.textContainer}>
-                            <Text style={styles.description}>{this.props.news.summary}</Text>
+                            <Text style={styles.description}>{summary}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>

@@ -63,6 +63,8 @@ class NewsDescription extends Component {
         if (this.props.news.summaryMultimediaContent.concreteImages && this.props.news.summaryMultimediaContent.concreteImages.length) {
             imageSource = {uri: this.props.news.summaryMultimediaContent.concreteImages[0].mediaLink.href};
         }
+        // Strip HTML
+        var title = this.props.news.title.replace(/<(?:.|\n)*?>/gm, '').replace('&nbsp;', ' ');
 
         return (
             <View style={styles.container}>
@@ -70,7 +72,7 @@ class NewsDescription extends Component {
                     <Image style={styles.image}  source={imageSource} />
                     <View style={styles.main}>
                         <Text style={styles.theme}>{this.props.news.contentType.name}</Text>
-                        <Text style={styles.title}>{this.props.news.title}</Text>
+                        <Text style={styles.title}>{title}</Text>
                         {this.props.news.publishedFirstTimeAt ?
                             <Text style={styles.date}>PUBLIÉ {this.props.news.publishedFirstTimeAt.substr(0, 16).replace('T', ' à ')}</Text> : null
                         }
